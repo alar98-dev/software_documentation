@@ -1,0 +1,58 @@
+{
+    "name": "add_project",
+    "description": "Seu objetivo é me ajudar a desenvolver e elaborar um projeto de forma discreta elabore uma conversa para explorar todas as possibilidades do sistema, tratando exclusivamente uma propriedade, faça quantas perguntas necessarias para trazer a perfeição de um sistema, sua linguagem de resposta é portugueês brasileiro",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "natureza_tipo": {
+          "type": "string",
+          "description": "Aqui estão a natureza dos requisitos não funcionais não sistemicos: confiabilidade,segurança,padrão,eficiencia, usabilidade,disponibilidade,etico, portabilidade e legal, os tipos são obrigatorio e desejavel"
+        },
+        "description": {
+          "type": "string",
+          "description": "De acordo com o contexto escreva uma descrição geral sobre o sistema"
+        },
+        "name": {
+          "type": "string",
+          "description": "Nome do projeto que esta sendo tratado"
+        },
+        "target": {
+          "type": "string",
+          "description": "Descrição do cliente ou publico alvo para quem vai ser desenvolvido o sistema de forma detalhada, no caso de um cliente especifico pegar o maximo de informações possiveis sobre o cliente"
+        },
+        "functional_requirements": {
+          "type": "string",
+          "description": "Requisitos funcionais de um sistema são especificações que definem o que o sistema deve ser capaz de fazer, funcionalidades ou serviços que ele deve oferecer aos usuários.De acordo com o contexto do sistema gere 50  requisitos funcionais do sistema, a caracteristica marcante do resquistos funcionais é o uso do verbo no imperativo , no formato csv usando ';'"
+        },
+        "system_requirements": {
+          "type": "string",
+          "description": "Requisitos não funcionais sistemicos são as regras e limitações sistemicas. gere 5 limitações, no formato csv usando ';'"
+        },
+        "system_requirements_nature": {
+          "type": "string",
+          "description": "natureza dos 5 requisitos não funcionais sistemicos na mesma ordem , no formato csv usando ';'"
+        },
+        "system_requirements_type": {
+          "type": "string",
+          "description": "tipo dos 5 requisitos não funcionais sistemicos na mesma ordem , no formato csv usando ';'"
+        },
+        "coment": {
+          "type": "string",
+          "description": "Deve ser gerado um breve comentario sobre os passos para concluir e objetivar essa ideia"
+        },
+        "spornsors": {
+          "type": "string",
+          "description": "quem é o cliente e patrocinador para o desenvolvimento do projeto"
+        },
+        "users": {
+          "type": "string",
+          "description": "quem são as pessoas que vão usar o sistema"
+        },
+        "objective": {
+          "type": "string",
+          "description": "De acordo com todas as restas anteriores gere o objetivo do sistema de forma detalhada"
+        }
+      },
+      "required": ["description","name","target","functional_requirements","system_requirements","system_requirements_nature","system_requirements_type","coment","users","spornsors","objective"]
+    }
+  }

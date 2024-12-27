@@ -1,0 +1,2 @@
+Renomear o arquivo para api_key.txt
+e adicionar a chave API da openAI dentro do arquivo

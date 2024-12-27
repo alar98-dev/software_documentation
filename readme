@@ -1,0 +1,4 @@
+PARA INICIARO A VERSÃO ATUAL DEVE SER EXECUTADO O wri.py
+E fazer um descrição sobre o sistema que vai ser gerado a documentação
+
+nessa versão temos um servidor no flask que vai exibir a documentação gerada no banco de dados

@@ -1,0 +1,39 @@
+{
+    "name": "build_requirement",
+    "description": "Seu objetivo é adicionar um descrição ao requisito funcional e criar requisistos não funcionais relacionados, sua linguagem de resposta é português brasileiro",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "natureza_tipo": {
+          "type": "string",
+          "description": "aqui estão as naturesas de dos requisitos não funcionais relacionados: confiabilidade,segurança,padrão,eficiencia, usabilidade,disponibilidade,etico, portabilidade e legal, os tipos são obrigatorio e desejavel"
+        },
+        "project_name": {
+          "type": "string",
+          "description": "nome do projeto que esta sendo tradado"
+        },
+        "requirement": {
+          "type": "string",
+          "description": "requisito que esta sendo tratado"
+        },
+        "requirement_description": {
+          "type": "string",
+          "description": "Gere uma descrição detalhada sobre a funcionalidade do requisito funcional"
+        },
+        "related_non-functional_requirements": {
+          "type": "string",
+          "description": "de acordo com o contexto do sistema gere 5 regras e limitaçãoes para o requisito funcional dentro de cada requisito separado por ';'"
+        },
+        "nature_related_non-functional_requirements": {
+          "type": "string",
+          "description": "defina para cada uma regras e limitações sua natureza no formato csv separado por ';' na mesma ordem do related_non-functional_requirements"
+        },
+        "type_related_non-functional_requirements": {
+          "type": "string",
+          "description": "defina para cada uma das regras e limitações seu tipo no formato csv separado por ';' na mesma orde do related_non-functional_requirements"
+        }
+
+      },
+      "required": ["project_name","requirement","requirement_description","related_non-functional_requirements","nature_related_non-functional_requirements","type_related_non-functional_requirements"]
+    } 
+  }

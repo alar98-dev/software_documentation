@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .project-list {
+            margin: 20px;
+        }
+        .project-item {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .action-button {
+            padding: 5px 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .action-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="project-list">
+        {% for project in projects.projects %}
+            <div class="project-item">
+                <span>{{ project.name }}</span>
+                <a href="{{ url_for('project_detail', project_id=project.id) }}" class="action-button">Ver Detalhes</a>
+            </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        function performAction(action) {
+            alert('Ação executada: ' + action);
+            // Aqui você pode substituir por qualquer lógica específica de execução da ação
+            // Por exemplo, uma chamada AJAX, ou navegação para uma nova página
+        }
+    </script>
+</body>
+</html>

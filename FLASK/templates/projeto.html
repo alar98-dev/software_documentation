@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Sistema</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .project-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #007BFF;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 24px;
+            margin-top: 20px;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+        }
+        .subsection-title {
+            font-size: 20px;
+            margin-top: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+        .content {
+            margin-top: 10px;
+        }
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .table, .table th, .table td {
+            border: 1px solid #ddd;
+        }
+        .table th, .table td {
+            padding: 8px;
+            text-align: left;
+        }
+        .table th {
+            background-color: #f2f2f2;
+        }
+        .highlight {
+            font-weight: bold;
+            color: #007BFF;
+        }
+        .button_edit {
+        background-color: #007BFF;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        font-size: 16px;
+        font-weight: bold;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        float: right;
+        
+        }
+
+        .button_edit:hover {
+            background-color: #0056b3;
+        }
+
+        .button_edit:active {
+            background-color: #004085;
+            transform: scale(0.98);
+        }
+
+        .button_edit:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nome do Projeto -->
+    <div class="project-title">{{ project.name }}</div>
+
+    <div class="content">
+        <div class="section-title">Descrição do Cliente / Público Alvo
+            <button class="button_edit">Editar</button>
+        </div>
+        <p>{{ project.target }}</p>
+        
+        <div class="section-title">Objetivo do Sistema
+            <button class="button_edit">Editar</button>
+        </div>
+        <p>{{ project.objective }}</p>
+        
+        <div class="section-title">Stakeholders
+            <button class="button_edit">Editar</button>
+        </div>
+        <div class="content">
+            <p><span class="highlight">Cliente/Patrocinador:</span> {{ project.spornsors }} </p>
+            <p><span class="highlight">Usuários do Sistema:</span> {{ project.users }} </p>
+            <p><span class="highlight">Equipe Técnica:</span> Esta sendo Projetado e desenvolvido pelo Alifer - desenvolvedor Full stack</p>
+        </div>
+
+        <div class="section-title">Estudo de Viabilidade
+            <button class="button_edit">Editar</button>
+        </div>
+        <div class="subsection-title">Estimativa de Prazo</div>
+        <p>{{ project.deadline }}</p>
+
+        <div class="subsection-title">Estimativa de Custo</div>
+        <p> {{ project.costs }}</p>
+
+        <div class="subsection-title">Restrições</div>
+        <p>{{ project.restriction }}</p>
+
+        <div class="section-title">Demais Aspectos
+            <button class="button_edit">Editar</button>
+        </div>
+        <p> {{ project.aspects }}</p>
+        <div class="subsection-title">Escopo do Sistema</div>
+        <p>{{ project.scope }}</p>
+        
+        <div class="subsection-title">O que não faz parte do Sistema</div>
+        <p> {{ project.no_scope }}</p>
+
+        <div class="section-title">Especificações dos Requisitos
+            <button class="button_edit">Editar</button>
+        </div>
+        
+        <div class="subsection-title">Requisitos Funcionais</div>
+
+        {% for p in project.functional_requirements %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="3">REQUISITO FUNCIONAL
+                        <button class="button_edit">Editar</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td colspan="3"> {{ p.functional_requirement }}</td>
+                </tr>
+                <tr>
+                    <td colspan="3"> {{ p.description }}</td>
+                </tr>
+                <tr>
+                    <th colspan="3">REQUISITOS FUNCIONAIS NÃO RELACIONADO</th>
+                </tr>
+                <tr>
+                    <th>Descrição detalhada da regra/restrição</th>
+                    <th>Natureza</th>
+                    <th>tipo</th>
+                </tr>
+                {% for related in p.related_functional %}
+                <tr>
+                    <td>{{ related.related_non_functtional_requirement }}</td>
+                    <td>{{ related.nature }}</td>
+                    <td>{{ related.type }}</td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <br>
+        {% endfor %}
+
+        <div class="subsection-title">Requisitos Não Funcionais Sistêmicos</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th colspan="3">REQUISTOS NÃO FUNCIONAIS SISTEMICOS
+                        <button class="button_edit">Editar</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th>Descrição detalhada da regra/restrição</th>
+                    <th>Natureza</th>
+                    <th>Tipo</th>
+                </tr>
+                {% for system in project.system_requiriments %}
+                <tr>
+                    <td>{{ system.system_requirement }}</td>
+                    <td>{{ system.nature }}</td>
+                    <td> {{ system.type }}</td>
+                </tr>
+
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

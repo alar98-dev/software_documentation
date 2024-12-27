@@ -1,0 +1,38 @@
+{
+    "name": "build_feasibility",
+    "description": "Vamos criar um estimativa de prazos, custos e restrições do projeto junto qual o escopo completo que vai ser desenvolvido, sua linguagem de resposta é português brasileiro",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "project_name": {
+          "type": "string",
+          "description": "nome do projeto que esta sendo tradado"
+        },
+        "deadline": {
+          "type": "string",
+          "description": "Descrição completa do prazo para o desenvolvimento para cada etapa do sistema com base nos requisitos no final usar o prazo total para desenvolvimento"
+        },
+        "costs": {
+          "type": "string",
+          "description": "Custo para o desenvolvimento de cada etapa da deadline ao final mostrando o valor final- calculado com base em R$20,00 a hora"
+        },
+        "restriction": {
+          "type": "string",
+          "description": "regras e restrições durante o desenvolvimento do sistema"
+        },
+        "aspects": {
+          "type": "string",
+          "description": "Gere um texto dissertavivo sobre todos os aspectos do sistema."
+        },
+        "scope": {
+          "type": "string",
+          "description": "Gere o escopo completo do sistema tudo que faz parte do desenvolmento do projeto."
+        },
+        "no_scope": {
+          "type": "string",
+          "description": "O que não faz parte do desenvolvimento do sistema"
+        }
+      },
+      "required": ["project_name","deadline","costs","restriction","aspects","scope","no_scope"]
+    } 
+  }
