@@ -52,7 +52,20 @@ class con:
         
         res = self.cursor.fetchall()
         return res
-
     
-#a = con()
+
+
+#AQUI VAMOS ADICIONAR AS FUNÇÃOES DE CONSULTA PARA EDIÇÃO - VAMOS TER UMA NOVA TABELA OU CULUNA COM A DESCRIÇÃO ENVIADA
+
+    def content_consult(self,id):
+        self.cursor.execute('''
+            SELECT content
+            FROM projects
+            WHERE id = ?
+        ''',(str(id)))
+        res = self.cursor.fetchall()
+        return res[0][0]
+
+
+#print(a.content_consult(2)[0][0])
 #print(a.projects_consult())

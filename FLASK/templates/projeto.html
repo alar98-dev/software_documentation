@@ -76,26 +76,105 @@
             background-color: #ccc;
             cursor: not-allowed;
         }
+
+        /*STYLE DO POPUP*/
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        .popup-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .popup-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #007BFF;
+            margin-bottom: 15px;
+        }
+
+        .popup-input {
+            width: 90%;
+            height: 100px;
+            
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .popup-button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .popup-button:hover {
+            background-color: #0056b3;
+        }
+
+        .popup-button:active {
+            background-color: #004085;
+            transform: scale(0.98);
+        }
+
+        .popup-button.cancel {
+            background-color: #ccc;
+            color: black;
+        }
+
+        .popup-button.cancel:hover {
+            background-color: #999;
+        }
     </style>
 </head>
 <body>
 
     <!-- Nome do Projeto -->
-    <div class="project-title">{{ project.name }}</div>
+    <div class="project-title" name="project-title" id="{{ project.id }}">{{ project.name }}</div>
 
     <div class="content">
         <div class="section-title">Descrição do Cliente / Público Alvo
-            <button class="button_edit">Editar</button>
+            <button class="button_edit" onclick="showPopup()">Editar</button>
         </div>
-        <p>{{ project.target }}</p>
+        <p class="text-target">{{ project.target }}</p>
         
         <div class="section-title">Objetivo do Sistema
-            <button class="button_edit">Editar</button>
+            <button class="button_edit" onclick="showPopup_objetivo()">Editar</button>
         </div>
-        <p>{{ project.objective }}</p>
+        <p class="text-objetivo">{{ project.objective }}</p>
         
         <div class="section-title">Stakeholders
-            <button class="button_edit">Editar</button>
+            <button class="button_edit" onclick="showPopup_stakeholders()">Editar</button>
         </div>
         <div class="content">
             <p><span class="highlight">Cliente/Patrocinador:</span> {{ project.spornsors }} </p>
@@ -104,7 +183,7 @@
         </div>
 
         <div class="section-title">Estudo de Viabilidade
-            <button class="button_edit">Editar</button>
+            <button class="button_edit" onclick="showPopup_viabilidade()">Editar</button>
         </div>
         <div class="subsection-title">Estimativa de Prazo</div>
         <p>{{ project.deadline }}</p>
@@ -116,7 +195,7 @@
         <p>{{ project.restriction }}</p>
 
         <div class="section-title">Demais Aspectos
-            <button class="button_edit">Editar</button>
+            <button class="button_edit" onclick="showPopup_aspectos()">Editar</button>
         </div>
         <p> {{ project.aspects }}</p>
         <div class="subsection-title">Escopo do Sistema</div>
@@ -196,6 +275,370 @@
             </tbody>
         </table>
     </div>
+
+
+<!--AQUI TEMOS OS POPUPS DE EDIÇÃO DO PROJETO-->
+
+<!--INICIO POPUP DESCRIÇÃO DO CLIENTE / PUBLICO ALVO -->
+
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup-container">
+            <div class="popup-title" id="popup-title-descricao">Enter Your Information</div>
+            <textarea type="text" class="popup-input" id="popup-id-descricao" placeholder="Type something..."></textarea>
+            <div class="button-container">
+                <button class="popup-button cancel" onclick="closePopup()">Cancel</button>
+                <button class="popup-button" onclick="editar_descricao()">Submit</button>
+            </div>
+        </div>
+    </div>
+
+<!--FINAL POPUP DESCRIÇÃO DO CLIENTE / PUBLICO ALVO -->
+
+<!-- INICIO POPUP OBJETIVO DO SISTEMA -->
+
+<div class="popup-overlay" id="popupOverlay-objetivo">
+    <div class="popup-container">
+        <div class="popup-title" id="popup-title-objetivo">Objetivo do Sistema</div>
+        <textarea type="text" class="popup-input" id="popup-text-objetivo" placeholder="Type something..."></textarea>
+        <div class="button-container">
+            <button class="popup-button cancel" onclick="closePopup_Objetivo()">Cancel</button>
+            <button class="popup-button" onclick="editar_objetivo()">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- FINAL POPUP OBJETIVO DO SISTEMA -->
+
+
+<!-- INICIO POPUP STAKEHOLDERS -->
+
+<div class="popup-overlay" id="popupOverlay-stakeholders">
+    <div class="popup-container">
+        <div class="popup-title" id="popup-title-stakeholders">Cliente/Patrocinador:</div>
+        <textarea type="text" class="popup-input" id="popup-text-client" placeholder="Type something..."></textarea>
+        <div class="popup-title" id="popup-title-stakeholders">Usuários do Sistema</div>
+        <textarea type="text" class="popup-input" id="popup-text-users" placeholder="Type something..."></textarea>
+        <div class="popup-title" id="popup-title-stakeholders">Equipe Técnica</div>
+        <textarea type="text" class="popup-input" id="popup-text-team" placeholder="Type something..."></textarea>
+        <div class="button-container">
+            <button class="popup-button cancel" onclick="closePopup_stakeholders()">Cancel</button>
+            <button class="popup-button" onclick="editar_stakeholders()">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- FINAL POPUP STAKEHOLDERS -->
+
+
+<!-- INICIO POPUP VIABILIDADE -->
+
+<div class="popup-overlay" id="popupOverlay-viabilidade">
+    <div class="popup-container">
+        <div class="popup-title">Estimativa de Prazo</div>
+        <textarea type="text" class="popup-input" id="popup-text-prazo" placeholder="Type something..."></textarea>
+        <div class="popup-title">Estimativa de Custo</div>
+        <textarea type="text" class="popup-input" id="popup-text-custo" placeholder="Type something..."></textarea>
+        <div class="popup-title">Restrições</div>
+        <textarea type="text" class="popup-input" id="popup-text-restricoes" placeholder="Type something..."></textarea>
+        <div class="button-container">
+            <button class="popup-button cancel" onclick="closePopup_viabilidade()">Cancel</button>
+            <button class="popup-button" onclick="editar_viabilidade()">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- FINAL POPUP VIABILIDADE -->
+
+
+<!-- INICIO POPUP ASPECTOS -->
+
+<div class="popup-overlay" id="popupOverlay-aspectos">
+    <div class="popup-container">
+        <div class="popup-title">Demais Aspectos</div>
+        <textarea type="text" class="popup-input" id="popup-text-aspectos" placeholder="Type something..."></textarea>
+        <div class="popup-title">Escopo do Sistema</div>
+        <textarea type="text" class="popup-input" id="popup-text-escopo" placeholder="Type something..."></textarea>
+        <div class="popup-title">O que não faz parte do Sistema</div>
+        <textarea type="text" class="popup-input" id="popup-text-nao-escopo" placeholder="Type something..."></textarea>
+        <div class="button-container">
+            <button class="popup-button cancel" onclick="closePopup_aspectos()">Cancel</button>
+            <button class="popup-button" onclick="editar_aspectos()">Submit</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- FINAL POPUP ASPECTOS -->
+
+
+    <script>
+
+        //----------------------INICIO POPUP DECRIÇÃO DO CLIENTE PUBLICO ALVO ----------------
+        function showPopup() {
+            
+            let text = document.querySelector(".text-target");
+            //alert(element.innerHTML)
+
+            document.getElementById('popup-title-descricao').innerHTML = "Descrição do Cliente / Público Alvo";
+            document.getElementById('popup-id-descricao').value = text.innerHTML
+            //alert("TESTA")
+            document.getElementById('popupOverlay').style.display = 'block';
+            
+        }
+
+        function closePopup() {
+            document.getElementById('popupOverlay').style.display = 'none';
+        }
+
+        function editar_descricao(){
+            let element = document.querySelector(".project-title");
+            let text = document.getElementById('popup-id-descricao').value;
+
+            //alert(text)
+            
+
+            const data = JSON.stringify({
+                id: element.id,
+                target: text
+                });
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST",'/projeto/edit-descricao', true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("DESCRIÇÃO ATUALIZADA!");
+                    document.getElementById('edit-popup').style.display = 'none';
+                    // Recarregar a tabela ou página (opcional)
+                    location.reload();
+                } else {
+                    alert("Erro ao salvar as alterações. Tente novamente.");
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Erro de conexão. Verifique sua rede.");
+            };
+
+            xhr.send(data);
+
+        };
+
+        // FINAL POPUP DESCRIÇÃO DO CLIENTE PUBLICO ALVO
+
+        // INICIO POPUP OBJETIVO DO SISTEMA
+
+        function showPopup_objetivo(){
+            let text = document.querySelector(".text-objetivo");
+            //alert(text.innerHTML)
+
+            //document.getElementById('popup-title-objetivo').innerHTML = "Objetivo do Sistema";
+            document.getElementById('popup-text-objetivo').value = text.innerHTML
+
+            document.getElementById('popupOverlay-objetivo').style.display = 'block';
+        }
+
+        function closePopup_Objetivo(){
+            document.getElementById('popupOverlay-objetivo').style.display = 'none';
+        }
+
+        function editar_objetivo(){
+            let element = document.querySelector(".project-title");
+            
+
+            const data = JSON.stringify({
+                id: element.id
+                });
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST",'/projeto/edit-objetivo', true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("DESCRIÇÃO ATUALIZADA!");
+                    document.getElementById('edit-popup').style.display = 'none';
+                    // Recarregar a tabela ou página (opcional)
+                    location.reload();
+                } else {
+                    alert("Erro ao salvar as alterações. Tente novamente.");
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Erro de conexão. Verifique sua rede.");
+            };
+
+            xhr.send(data);
+
+        };
+        // FINAL POPUP OBJETIVO DO SISTEMA
+
+
+        // INICIO POPUP STAKEHOLDERS
+
+        function showPopup_stakeholders(){
+            let text = document.querySelector(".text-objetivo");
+            //alert(text.innerHTML)
+
+            //document.getElementById('popup-title-objetivo').innerHTML = "Objetivo do Sistema";
+            document.getElementById('popup-text-objetivo').value = text.innerHTML
+
+            document.getElementById('popupOverlay-stakeholders').style.display = 'block';
+        }
+
+        function closePopup_stakeholders(){
+            document.getElementById('popupOverlay-stakeholders').style.display = 'none';
+        }
+
+        function editar_stakeholders(){
+            let element = document.querySelector(".project-title");
+            
+
+            const data = JSON.stringify({
+                id: element.id
+                });
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST",'/projeto/edit-stakeholders', true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("DESCRIÇÃO ATUALIZADA!");
+                    document.getElementById('edit-popup').style.display = 'none';
+                    // Recarregar a tabela ou página (opcional)
+                    location.reload();
+                } else {
+                    alert("Erro ao salvar as alterações. Tente novamente.");
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Erro de conexão. Verifique sua rede.");
+            };
+
+            xhr.send(data);
+
+        };
+        // FINAL POPUP STAKEHOLDERS
+
+         // INICIO POPUP VIABILIDADE
+
+         function showPopup_viabilidade(){
+            let text = document.querySelector(".text-objetivo");
+            //alert(text.innerHTML)
+
+            //document.getElementById('popup-title-objetivo').innerHTML = "Objetivo do Sistema";
+            document.getElementById('popup-text-objetivo').value = text.innerHTML
+
+            document.getElementById('popupOverlay-viabilidade').style.display = 'block';
+        }
+
+        function closePopup_viabilidade(){
+            document.getElementById('popupOverlay-viabilidade').style.display = 'none';
+        }
+
+        function editar_viabilidade(){
+            let element = document.querySelector(".project-title");
+            
+
+            const data = JSON.stringify({
+                id: element.id
+                });
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST",'/projeto/edit-viabilidade', true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("DESCRIÇÃO ATUALIZADA!");
+                    document.getElementById('edit-popup').style.display = 'none';
+                    // Recarregar a tabela ou página (opcional)
+                    location.reload();
+                } else {
+                    alert("Erro ao salvar as alterações. Tente novamente.");
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Erro de conexão. Verifique sua rede.");
+            };
+
+            xhr.send(data);
+
+        };
+        // FINAL POPUP VIABILIDADE
+
+
+         // INICIO POPUP ASPECTOS
+
+         function showPopup_aspectos(){
+            let text = document.querySelector(".text-objetivo");
+            //alert(text.innerHTML)
+
+            //document.getElementById('popup-title-objetivo').innerHTML = "Objetivo do Sistema";
+            document.getElementById('popup-text-objetivo').value = text.innerHTML
+
+            document.getElementById('popupOverlay-aspectos').style.display = 'block';
+        }
+
+        function closePopup_aspectos(){
+            document.getElementById('popupOverlay-aspectos').style.display = 'none';
+        }
+
+        function editar_aspectos(){
+            let element = document.querySelector(".project-title");
+            
+
+            const data = JSON.stringify({
+                id: element.id
+                });
+
+            const xhr = new XMLHttpRequest();
+
+            xhr.open("POST",'/projeto/edit-aspectos', true)
+            xhr.setRequestHeader("Content-Type", "application/json");
+            
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    alert("DESCRIÇÃO ATUALIZADA!");
+                    document.getElementById('edit-popup').style.display = 'none';
+                    // Recarregar a tabela ou página (opcional)
+                    location.reload();
+                } else {
+                    alert("Erro ao salvar as alterações. Tente novamente.");
+                    console.error(xhr.responseText);
+                }
+            };
+
+            xhr.onerror = function () {
+                alert("Erro de conexão. Verifique sua rede.");
+            };
+
+            xhr.send(data);
+
+        };
+        // FINAL POPUP ASPECTOS
+
+    </script>
 
 </body>
 </html>

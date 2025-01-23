@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import connection
 
 #VARIAEVEIS GLOBIAS
@@ -100,6 +100,65 @@ def project_detail(project_id):
     else:
         return "Projeto não encontrado", 404
 
+
+#AQUI VAMOS ADICIONAR OS AJAX DO SERVIDOR
+
+@app.route('/projeto/edit-descricao',methods=["POST"])
+def edit_descricao():
+    try:
+        con = connection.con()
+        print("testando o ajax")
+        dados = request.get_json()
+        print(dados)
+        id = dados.get("id")
+        new_target = dados.get("target")
+        print("O ID DO PROJETO É ESSE!",id)
+        print("ESSE É O NOVO TARGET: ", new_target)
+
+        #content = con.content_consult(id=id)
+
+        #print(content)
+
+        return jsonify({"mensagem": "Alterações salvas com sucesso!"}), 200
+    except Exception as e:
+        return jsonify({"erro": str(e)}), 500
+
+
+@app.route('/projeto/edit-objetivo',methods=["POST"])
+def edit_objetivo():
+    try:
+        con = connection.con()
+        print("testando o ajax")
+        dados = request.get_json()
+        print(dados)
+        id = dados.get("id")
+        print("O ID DO PROJETO É ESSE!",id)
+
+        content = con.content_consult(id=id)
+
+        print(content)
+
+        return jsonify({"mensagem": "Alterações salvas com sucesso!"}), 200
+    except Exception as e:
+        return jsonify({"erro": str(e)}), 500
+    
+@app.route('/projeto/edit-stakeholders',methods=["POST"])
+def edit_stakeholders():
+    try:
+        con = connection.con()
+        print("testando o ajax")
+        dados = request.get_json()
+        print(dados)
+        id = dados.get("id")
+        print("O ID DO PROJETO É ESSE!",id)
+
+        content = con.content_consult(id=id)
+
+        print(content)
+
+        return jsonify({"mensagem": "Alterações salvas com sucesso!"}), 200
+    except Exception as e:
+        return jsonify({"erro": str(e)}), 500
 
 
 if __name__ == "__main__":
