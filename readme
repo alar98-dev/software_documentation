@@ -1,7 +1,16 @@
-PARA INICIARO A VERSÃO ATUAL DEVE SER EXECUTADO O wri.py
-E fazer um descrição sobre o sistema que vai ser gerado a documentação
+PARA INICIAR: execute `wri.py` e faça uma descrição do sistema que será documentado.
 
-nessa versão temos um servidor no flask que vai exibir a documentação gerada no banco de dados
+Nesta versão há um servidor Flask que exibe a documentação gerada no banco de dados.
 
-VNA PROXIMA ETAPA VAMOS PRECISAR CRIAR UMA INTERFACE GRAFICA PARA A INTERAÇÃO COM A OPENAI E LISTAR
-ALEM DE EXIBIR A DOCUMENTAÇÃO DO SISTEMA VAMOS ADICIONAR A FUNCIONALIDADE DE EDITAR CADA CAMPO ADICIONANDO INFORMAÇÕES DE TEXTO POSSIBILITANDO A EDIÇÃO DIRETA OU DA GEREÇÃO DA ALTERAÇÃO COM A OPEN AI
+PRÓXIMOS PASSOS: criar uma interface gráfica para interação com modelos LLM (OpenAI ou Ollama). Além de exibir a documentação do sistema, queremos permitir a edição direta de campos e a geração/alteração via API de LLM.
+
+BACKEND LLM (OpenAI ou Ollama)
+- O projeto detecta automaticamente o backend a ser usado: se `OPENAI_API_KEY` estiver definida, ele usa OpenAI; caso contrário, ele tenta usar um Ollama local (padrão `http://127.0.0.1:11434`).
+- Para forçar um backend, defina `AI_BACKEND=openai` ou `AI_BACKEND=ollama`.
+
+TESTANDO OLLAMA
+- Instale as dependências: `pip install -r requirements.txt` (inclui `requests`)
+- Se usar Ollama local: inicie o serviço localmente (veja `DOCUMENTAÇÃO/OLLAMA.md`). Use `python3 scripts/test_ollama.py` para verificar a conexão.
+
+Se preferir usar OpenAI, coloque a chave em `api_key.txt` ou defina `OPENAI_API_KEY` no ambiente.
+

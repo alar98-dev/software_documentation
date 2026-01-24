@@ -3,3 +3,7 @@ NO DESENVOLVIMENTO DA CHAMDA DE FUNÇÃO DEPARAMOS COM UM PROBLEMA, VAMOS SEPARA
 
 PARA COMPLETAR O PREENCHIMENTO AUTOMATICO DA DOCUMENTAÇÃO VAMOS PRECISAR DAS PREENCHER GERAR AS SEGUINTES INFORMAÇÕES
 
+---
+
+Nota: Para instruções atualizadas sobre como listar modelos Ollama via HTTP, veja `DOCUMENTACAO/OLLAMA.md` (inclui o script `scripts/list_ollama_models.py` e exemplos para testar `qken3` e `gemma3:12b`).
+

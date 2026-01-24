@@ -1,2 +1,3 @@
-Renomear o arquivo para api_key.txt
-e adicionar a chave API da openAI dentro do arquivo
+Renomeie o arquivo para `api_key.txt` e adicione sua chave OpenAI dentro do arquivo (ou defina `OPENAI_API_KEY` no ambiente).
+
+Se você pretende usar Ollama local em vez de OpenAI, deixe este arquivo vazio e defina `AI_BACKEND=ollama` se quiser forçar o backend.
